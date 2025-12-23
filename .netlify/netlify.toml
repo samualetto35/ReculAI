@@ -1,0 +1,72 @@
+headersOrigin = "inline"
+redirectsOrigin = "inline"
+
+[images]
+remote_images = ["^(?:http(?:s)?:\\/\\/localhost(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$"]
+
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "config"
+package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+
+[build]
+publish = "/Users/a.sametyildiz/Desktop/Combined All/Combined Agentic Porject/hirevue extension recula/apps/web/.next"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build --workspace=apps/web"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/_next/static/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]

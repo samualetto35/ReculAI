@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark theme (default) */
+:root {
+  --surface-0: #0a0a0b;
+  --surface-50: #121214;
+  --surface-100: #18181b;
+  --surface-200: #1f1f23;
+  --surface-300: #27272a;
+  --surface-400: #3f3f46;
+  --surface-500: #52525b;
+  --surface-600: #71717a;
+  --surface-700: #a1a1aa;
+  --surface-800: #d4d4d8;
+  --surface-900: #f4f4f5;
+
+  /* Brand colors - teal/emerald */
+  --brand-50: #f0fdfa;
+  --brand-100: #ccfbf1;
+  --brand-200: #99f6e4;
+  --brand-300: #5eead4;
+  --brand-400: #2dd4bf;
+  --brand-500: #14b8a6;
+  --brand-600: #0d9488;
+  --brand-700: #0f766e;
+  --brand-800: #115e59;
+  --brand-900: #134e4a;
+  --brand-950: #042f2e;
+}
+
+/* Light theme - clean plain background */
+:root.light {
+  --surface-0: #f8f8f8;
+  --surface-50: #f5f5f5;
+  --surface-100: #eeeeee;
+  --surface-200: #e0e0e0;
+  --surface-300: #d0d0d0;
+  --surface-400: #a0a0a0;
+  --surface-500: #707070;
+  --surface-600: #505050;
+  --surface-700: #383838;
+  --surface-800: #202020;
+  --surface-900: #121212;
+
+  /* Brand colors */
+  --brand-50: #f0fdfa;
+  --brand-100: #ccfbf1;
+  --brand-200: #99f6e4;
+  --brand-300: #5eead4;
+  --brand-400: #2dd4bf;
+  --brand-500: #14b8a6;
+  --brand-600: #0d9488;
+  --brand-700: #0f766e;
+  --brand-800: #115e59;
+  --brand-900: #134e4a;
+  --brand-950: #042f2e;
+}
+
+@layer base {
+  * {
+    @apply border-surface-300;
+  }
+
+  body {
+    @apply bg-surface-0 text-surface-800;
+  }
+
+  ::selection {
+    @apply bg-brand-500/30;
+  }
+
+  :root.light ::selection {
+    @apply text-surface-900;
+  }
+
+  /* Prevent browser autofill from forcing light-blue background (Chrome/Safari) */
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  textarea:-webkit-autofill:hover,
+  select:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--surface-800);
+    caret-color: var(--surface-800);
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface-100) inset;
+    box-shadow: 0 0 0px 1000px var(--surface-100) inset;
+    transition: background-color 9999s ease-out 0s;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-surface-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-500 text-white hover:bg-brand-600 focus:ring-brand-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-surface-200 text-surface-800 hover:bg-surface-300 focus:ring-surface-400;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-surface-700 hover:bg-surface-100 focus:ring-surface-400;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-500/10 text-red-400 hover:bg-red-500/20 focus:ring-red-500;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 bg-surface-100 border border-surface-300 rounded-lg text-surface-800 placeholder:text-surface-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-surface-50 border border-surface-200 rounded-xl;
+  }
+
+  .glass {
+    @apply bg-surface-50/80 backdrop-blur-xl border border-surface-200/50;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: animateIn 0.5s ease-out forwards;
+  }
+
+  @keyframes animateIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .recording-indicator {
+    @apply w-3 h-3 bg-red-500 rounded-full animate-recording;
+  }
+}
+
+/* Video player custom styles */
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surface-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-surface-500;
+}
+

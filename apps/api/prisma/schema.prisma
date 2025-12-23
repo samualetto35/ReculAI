@@ -1,0 +1,273 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== USERS & AUTH ====================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  name          String
+  role          UserRole  @default(HR_USER)
+  company       Company?  @relation(fields: [companyId], references: [id])
+  companyId     String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  interviews    Interview[]
+  evaluations   Evaluation[]
+}
+
+model Company {
+  id            String    @id @default(uuid())
+  name          String
+  logo          String?
+  domain        String?   @unique
+  settings      Json?     // Company-wide settings
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  users         User[]
+  interviews    Interview[]
+  rubrics       Rubric[]
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  COMPANY_ADMIN
+  HR_USER
+}
+
+// ==================== INTERVIEWS ====================
+
+model Interview {
+  id              String          @id @default(uuid())
+  title           String
+  description     String?
+  company         Company         @relation(fields: [companyId], references: [id])
+  companyId       String
+  createdBy       User            @relation(fields: [createdById], references: [id])
+  createdById     String
+  status          InterviewStatus @default(DRAFT)
+  expiresAt       DateTime?
+  settings        Json?           // Interview-specific settings
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  
+  questions       Question[]
+  candidates      Candidate[]
+  rubric          Rubric?         @relation(fields: [rubricId], references: [id])
+  rubricId        String?
+}
+
+model Question {
+  id              String    @id @default(uuid())
+  interview       Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  interviewId     String
+  order           Int
+  text            String
+  thinkingTime    Int       @default(30)  // seconds
+  answerTime      Int       @default(120) // seconds
+  retakes         Int       @default(1)   // number of retakes allowed
+  isRequired      Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  responses       Response[]
+
+  @@index([interviewId, order])
+}
+
+enum InterviewStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  CLOSED
+  ARCHIVED
+}
+
+// ==================== CANDIDATES ====================
+
+model Candidate {
+  id                String          @id @default(uuid())
+  email             String
+  name              String
+  phone             String?
+  resumeUrl         String?
+  interview         Interview       @relation(fields: [interviewId], references: [id])
+  interviewId       String
+  accessToken       String          @unique @default(uuid())
+  status            CandidateStatus @default(INVITED)
+  invitedAt         DateTime        @default(now())
+  startedAt         DateTime?
+  completedAt       DateTime?
+  deviceInfo        Json?           // Browser, OS info
+  suspiciousBehavior Json?          // Tab switches, etc.
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  
+  responses         Response[]
+  evaluation        Evaluation?
+
+  @@unique([email, interviewId])
+  @@index([accessToken])
+  @@index([interviewId, status])
+}
+
+enum CandidateStatus {
+  INVITED
+  STARTED
+  IN_PROGRESS
+  COMPLETED
+  EXPIRED
+  DISQUALIFIED
+}
+
+// ==================== RESPONSES & VIDEOS ====================
+
+model Response {
+  id              String        @id @default(uuid())
+  candidate       Candidate     @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  candidateId     String
+  question        Question      @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId      String
+  videoUrl        String?
+  audioUrl        String?       // Fallback for low-bandwidth
+  duration        Int?          // seconds
+  fileSize        Int?          // bytes
+  status          ResponseStatus @default(PENDING)
+  retakeNumber    Int           @default(1)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  transcription   Transcription?
+  analysis        Analysis?
+
+  @@unique([candidateId, questionId])
+  @@index([candidateId])
+}
+
+enum ResponseStatus {
+  PENDING
+  UPLOADING
+  UPLOADED
+  PROCESSING
+  TRANSCRIBING
+  ANALYZING
+  COMPLETED
+  FAILED
+}
+
+// ==================== AI PROCESSING ====================
+
+model Transcription {
+  id              String    @id @default(uuid())
+  response        Response  @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  responseId      String    @unique
+  text            String
+  segments        Json      // Array of {start, end, text} for timestamp navigation
+  language        String?
+  confidence      Float?
+  processingTime  Int?      // milliseconds
+  createdAt       DateTime  @default(now())
+}
+
+model Analysis {
+  id              String    @id @default(uuid())
+  response        Response  @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  responseId      String    @unique
+  overallScore    Float     // 0-100
+  competencies    Json      // Array of competency scores
+  highlights      Json      // Key moments with timestamps
+  redFlags        Json?     // Concerning patterns
+  summary         String
+  starAnalysis    Json?     // STAR method breakdown
+  rawLLMResponse  Json?     // Full LLM response for debugging
+  processingTime  Int?      // milliseconds
+  createdAt       DateTime  @default(now())
+}
+
+// ==================== RUBRICS & EVALUATION ====================
+
+model Rubric {
+  id              String    @id @default(uuid())
+  name            String
+  description     String?
+  company         Company   @relation(fields: [companyId], references: [id])
+  companyId       String
+  competencies    Json      // Array of {name, description, weight, criteria}
+  isDefault       Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  interviews      Interview[]
+}
+
+model Evaluation {
+  id              String    @id @default(uuid())
+  candidate       Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  candidateId     String    @unique
+  evaluator       User?     @relation(fields: [evaluatorId], references: [id])
+  evaluatorId     String?
+  aiScore         Float     // AI-generated overall score
+  humanScore      Float?    // HR's manual score
+  aiNotes         String?   // AI-generated summary
+  humanNotes      String?   // HR's notes
+  decision        Decision?
+  decidedAt       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([candidateId])
+}
+
+enum Decision {
+  PENDING
+  SHORTLISTED
+  REJECTED
+  HIRED
+}
+
+// ==================== JOB QUEUE ====================
+
+model JobQueue {
+  id              String    @id @default(uuid())
+  type            JobType
+  status          JobStatus @default(PENDING)
+  payload         Json
+  result          Json?
+  error           String?
+  attempts        Int       @default(0)
+  maxAttempts     Int       @default(3)
+  priority        Int       @default(0)
+  scheduledAt     DateTime  @default(now())
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([type, status])
+  @@index([scheduledAt])
+}
+
+enum JobType {
+  TRANSCRIBE_VIDEO
+  ANALYZE_RESPONSE
+  GENERATE_REPORT
+  SEND_NOTIFICATION
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
