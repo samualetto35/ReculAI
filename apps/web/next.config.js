@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
   images: {
-    unoptimized: true,
+    domains: ['localhost'],
   },
-  trailingSlash: true,
+  // Don't use static export - use server-side rendering for dynamic routes
+  // Netlify plugin will handle the deployment
 };
 
 module.exports = nextConfig;
