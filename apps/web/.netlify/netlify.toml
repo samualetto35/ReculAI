@@ -1,0 +1,34 @@
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "config"
+package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+
+[build]
+publish = "/Users/a.sametyildiz/Desktop/Combined All/Combined Agentic Porject/hirevue extension recula/apps/web/apps/web/.next"
+publishOrigin = "config"
+commandOrigin = "config"
+base = "/Users/a.sametyildiz/Desktop/Combined All/Combined Agentic Porject/hirevue extension recula/apps/web"
+command = "npm run build --workspace=apps/web"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]

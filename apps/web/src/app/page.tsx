@@ -27,7 +27,7 @@ const featuresGroup1 = [
   },
 ];
 
-const featuresGroup2 = [
+const featuresGroup2: typeof featuresGroup1 = [
   { 
     icon: Shield, 
     title: 'KVKK Uyumlu', 
