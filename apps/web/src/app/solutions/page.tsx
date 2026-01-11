@@ -80,20 +80,20 @@ export default function SolutionsPage() {
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link href="/auth/login" className="text-sm text-surface-600 hover:text-surface-900">
+            <a href="https://apprecula.netlify.app/login" className="text-sm text-surface-600 hover:text-surface-900">
               Giriş
-            </Link>
-            <Link href="/auth/register" className="text-sm bg-black hover:bg-zinc-800 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+            </a>
+            <a href="https://apprecula.netlify.app/register" className="text-sm bg-black hover:bg-zinc-800 text-white px-4 py-2 rounded-lg font-medium transition-colors">
               Ücretsiz Başla
-            </Link>
+            </a>
           </nav>
           <div className="flex md:hidden items-center gap-2">
             <button onClick={toggleTheme} className="p-2 rounded-3xl bg-surface-100 text-surface-600">
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link href="/auth/register" className="text-xs bg-black text-white px-3 py-1.5 rounded-3xl font-medium">
+            <a href="https://apprecula.netlify.app/register" className="text-xs bg-black text-white px-3 py-1.5 rounded-3xl font-medium">
               Başla
-            </Link>
+            </a>
             <MobileNavMenu />
           </div>
         </div>
@@ -206,10 +206,10 @@ export default function SolutionsPage() {
             <h2 className="text-2xl md:text-3xl font-semibold text-surface-900 mb-3">Hemen Başlayın</h2>
             <p className="text-sm md:text-base text-surface-600 mb-6">14 gün ücretsiz deneyin.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/auth/register" className="w-full sm:w-auto text-[13px] md:text-base bg-black hover:bg-zinc-800 text-white px-6 py-2.5 rounded-3xl font-medium transition-colors flex items-center justify-center gap-2">
+              <a href="https://apprecula.netlify.app/register" className="w-full sm:w-auto text-[13px] md:text-base bg-black hover:bg-zinc-800 text-white px-6 py-2.5 rounded-3xl font-medium transition-colors flex items-center justify-center gap-2">
                 Ücretsiz Başla
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
               <Link href="/contact" className="w-full sm:w-auto text-[13px] md:text-base bg-surface-100 hover:bg-surface-200 text-surface-700 px-6 py-[10px] rounded-3xl font-medium transition-colors">
                 Demo Talep Et
               </Link>

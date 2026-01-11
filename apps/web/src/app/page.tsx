@@ -66,21 +66,21 @@ export default function HomePage() {
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link href="/auth/login" className="text-sm text-surface-600 hover:text-surface-900">
+            <a href="https://apprecula.netlify.app/login" className="text-sm text-surface-600 hover:text-surface-900">
               Giriş
-            </Link>
-            <Link href="/auth/register" className="text-[13px] bg-black hover:bg-zinc-800 text-white px-4 py-2 rounded-3xl font-medium transition-colors">
+            </a>
+            <a href="https://apprecula.netlify.app/register" className="text-[13px] bg-black hover:bg-zinc-800 text-white px-4 py-2 rounded-3xl font-medium transition-colors">
               Ücretsiz Başla
-            </Link>
+            </a>
           </nav>
           {/* Mobile nav */}
           <div className="flex md:hidden items-center gap-2">
             <button onClick={toggleTheme} className="p-2 rounded-3xl bg-surface-100 text-surface-600">
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link href="/auth/register" className="text-xs bg-black text-white px-3 py-1.5 rounded-3xl font-medium">
+            <a href="https://apprecula.netlify.app/register" className="text-xs bg-black text-white px-3 py-1.5 rounded-3xl font-medium">
               Başla
-            </Link>
+            </a>
             <MobileNavMenu />
           </div>
         </div>
@@ -106,13 +106,13 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
-              <Link
-                href="/auth/register"
+              <a
+                href="https://apprecula.netlify.app/register"
                 className="min-w-0 whitespace-nowrap text-[clamp(11px,3.2vw,14px)] md:text-[13px] bg-black hover:bg-zinc-800 text-white px-[clamp(10px,3.5vw,16px)] md:px-8 py-[10px] md:py-[10px] rounded-3xl font-medium transition-colors flex items-center justify-center gap-2"
               >
                 14 Gün Ücretsiz Deneyin
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
-              </Link>
+              </a>
               <Link
                 href="/demo"
                 className="min-w-0 whitespace-nowrap text-[clamp(11px,3.2vw,14px)] md:text-[13px] bg-surface-100 hover:bg-surface-200 text-surface-700 px-[clamp(10px,3.5vw,32px)] md:px-8 py-[10px] md:py-[10px] rounded-3xl font-medium transition-colors flex items-center justify-center gap-2"
@@ -384,13 +384,13 @@ export default function HomePage() {
               14 gün ücretsiz deneme. Kredi kartı gerekmez.
             </p>
             <div className="flex flex-row flex-nowrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
-              <Link
-                href="/auth/register"
+              <a
+                href="https://apprecula.netlify.app/register"
                 className="min-w-0 whitespace-nowrap text-[clamp(11px,3.2vw,14px)] md:text-[13px] bg-black hover:bg-zinc-800 text-white px-[clamp(10px,3.5vw,16px)] md:px-8 py-[clamp(9px,2.6vw,12px)] md:py-2.5 rounded-3xl font-medium transition-colors flex items-center justify-center gap-2"
               >
               Ücretsiz Hesap Oluştur
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
-              </Link>
+              </a>
               <Link
                 href="/pricing"
                 className="min-w-0 whitespace-nowrap text-[clamp(11px,3.2vw,14px)] md:text-base bg-surface-100 hover:bg-surface-200 text-surface-700 px-[clamp(10px,3.5vw,16px)] md:px-8 py-[clamp(9px,2.6vw,12px)] md:py-2.5 rounded-3xl font-medium transition-colors"

@@ -62,9 +62,9 @@ export default function LoginPage() {
           <h2 className="text-2xl font-bold text-surface-900 mb-2">Giriş Yap</h2>
           <p className="text-surface-600 mb-8">
             Hesabınız yok mu?{' '}
-            <Link href="/auth/register" className="text-brand-400 hover:text-brand-300">
+            <a href="https://apprecula.netlify.app/register" className="text-brand-400 hover:text-brand-300">
               Kayıt olun
-            </Link>
+            </a>
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">

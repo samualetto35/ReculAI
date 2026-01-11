@@ -38,9 +38,9 @@ export default function DemoRecruiterLayout({
         <div className="flex items-center justify-center gap-2">
           <Sparkles className="w-4 h-4" />
           <span>Demo Modu - Tüm veriler örnektir</span>
-          <Link href="/auth/register" className="underline ml-2 hover:no-underline">
+          <a href="https://apprecula.netlify.app/register" className="underline ml-2 hover:no-underline">
             Gerçek hesap oluştur →
-          </Link>
+          </a>
           {/* Theme Toggle in Banner */}
           <button
             onClick={toggleTheme}

@@ -52,20 +52,20 @@ export default function ContactPage() {
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link href="/auth/login" className="text-sm text-surface-600 hover:text-surface-900">
+            <a href="https://apprecula.netlify.app/login" className="text-sm text-surface-600 hover:text-surface-900">
               Giriş
-            </Link>
-            <Link href="/auth/register" className="text-sm bg-black hover:bg-zinc-800 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+            </a>
+            <a href="https://apprecula.netlify.app/register" className="text-sm bg-black hover:bg-zinc-800 text-white px-4 py-2 rounded-lg font-medium transition-colors">
               Ücretsiz Başla
-            </Link>
+            </a>
           </nav>
           <div className="flex md:hidden items-center gap-2">
             <button onClick={toggleTheme} className="p-2 rounded-3xl bg-surface-100 text-surface-600">
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link href="/auth/register" className="text-xs bg-black text-white px-3 py-1.5 rounded-3xl font-medium">
+            <a href="https://apprecula.netlify.app/register" className="text-xs bg-black text-white px-3 py-1.5 rounded-3xl font-medium">
               Başla
-            </Link>
+            </a>
             <MobileNavMenu />
           </div>
         </div>

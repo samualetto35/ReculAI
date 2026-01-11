@@ -24,7 +24,7 @@ export function MobileNavMenu({
         { label: 'Çözümler', href: '/solutions' },
         { label: 'Fiyatlandırma', href: '/pricing' },
         { label: 'İletişim', href: '/contact' },
-        { label: 'Giriş Yap', href: '/auth/login' },
+        { label: 'Giriş Yap', href: 'https://apprecula.netlify.app/login' },
       ],
     [items]
   );

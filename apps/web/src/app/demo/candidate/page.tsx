@@ -710,10 +710,10 @@ export default function DemoCandidateInterviewPage() {
                 <p className="text-surface-600 text-sm mb-4">
                   Gerçek hesabınızı oluşturun ve işe alım süreçlerinizi modernleştirin.
                 </p>
-                <Link href="/auth/register" className="btn-primary">
+                <a href="https://apprecula.netlify.app/register" className="btn-primary">
                   Ücretsiz Başla
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </a>
               </div>
 
               <div className="flex items-center justify-center gap-4">

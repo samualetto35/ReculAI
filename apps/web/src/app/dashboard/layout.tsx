@@ -34,7 +34,7 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push('/auth/login');
+      window.location.href = 'https://apprecula.netlify.app/login';
     }
   }, [isAuthenticated, router]);
 
