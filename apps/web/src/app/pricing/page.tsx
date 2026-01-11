@@ -150,7 +150,7 @@ export default function PricingPage() {
                 <div
                   key={i}
                   className={cn(
-                    'bg-surface-50 border rounded-xl p-5 md:p-6 relative',
+                    'bg-surface-50 border rounded-xl p-5 md:p-6 relative flex flex-col',
                     plan.highlighted ? 'border-zinc-800 shadow-lg shadow-zinc-900/10' : 'border-surface-200'
                   )}
                 >
@@ -176,7 +176,7 @@ export default function PricingPage() {
                       <span className="text-xl md:text-2xl font-semibold text-surface-900">Özel Fiyat</span>
                     )}
                   </div>
-                  <ul className="space-y-2.5 mb-6">
+                  <ul className="space-y-2.5 mb-6 flex-1">
                     {plan.features.map((f, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm text-surface-600">
                         <Check className="w-4 h-4 text-zinc-500" />
@@ -187,7 +187,7 @@ export default function PricingPage() {
                   <a
                     href={plan.price === null ? '/contact' : 'https://apprecula.netlify.app/register'}
                     className={cn(
-                      'block text-center text-sm font-medium py-2.5 md:py-3 rounded-lg transition-colors',
+                      'block text-center text-sm font-medium py-2.5 md:py-3 rounded-lg transition-colors mt-auto',
                       plan.highlighted
                         ? 'bg-black hover:bg-zinc-800 text-white'
                         : 'bg-surface-100 hover:bg-surface-200 text-surface-700'
