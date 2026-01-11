@@ -67,93 +67,101 @@ const faqs = [
 
 const companies = ['TechCorp', 'Startup Hub', 'Global Yazılım', 'Fintech Co', 'E-Ticaret Plus'];
 
-// Feature illustration components
+// Feature illustration components - Minimal B2B SaaS style
 const FeatureIllustration1 = ({ activeIndex }: { activeIndex: number }) => {
   const illustrations = [
-    // Asenkron Video - Video player mockup
-    <div key="video" className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="relative w-full max-w-sm">
-        <div className="bg-surface-100 rounded-2xl p-4 shadow-lg border border-surface-200">
-          <div className="aspect-video bg-gradient-to-br from-surface-200 to-surface-300 rounded-xl mb-3 relative overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-                <Play className="w-6 h-6 text-surface-700 ml-1" />
-              </div>
+    // Asenkron Video - Minimal video interface
+    <div key="video" className="relative w-full h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-xs">
+        {/* Browser chrome */}
+        <div className="bg-surface-200/50 rounded-t-2xl px-4 py-3 flex items-center gap-2">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-surface-300" />
+            <div className="w-2.5 h-2.5 rounded-full bg-surface-300" />
+            <div className="w-2.5 h-2.5 rounded-full bg-surface-300" />
+          </div>
+          <div className="flex-1 mx-8">
+            <div className="h-5 bg-surface-100 rounded-full" />
+          </div>
+        </div>
+        {/* Content */}
+        <div className="bg-surface-100/80 rounded-b-2xl p-6 backdrop-blur-sm">
+          <div className="aspect-[4/3] bg-surface-200/60 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
+            <div className="w-12 h-12 rounded-full bg-surface-0 flex items-center justify-center shadow-sm">
+              <Play className="w-5 h-5 text-surface-600 ml-0.5" />
             </div>
-            <div className="absolute bottom-2 left-2 right-2 h-1 bg-surface-400/30 rounded-full">
-              <div className="h-full w-1/3 bg-emerald-500 rounded-full" />
+            <div className="absolute bottom-3 left-3 right-3">
+              <div className="h-1 bg-surface-300/50 rounded-full">
+                <div className="h-full w-2/5 bg-surface-500 rounded-full" />
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-violet-600" />
-            <div className="flex-1">
-              <div className="h-3 w-24 bg-surface-300 rounded-full mb-1.5" />
-              <div className="h-2 w-16 bg-surface-200 rounded-full" />
+            <div className="w-8 h-8 rounded-full bg-surface-200" />
+            <div className="flex-1 space-y-1.5">
+              <div className="h-2.5 w-20 bg-surface-200 rounded-full" />
+              <div className="h-2 w-14 bg-surface-200/60 rounded-full" />
             </div>
-            <div className="px-2 py-1 bg-emerald-500/10 text-emerald-600 text-xs font-medium rounded-full">Canlı</div>
           </div>
         </div>
-        <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-violet-500/10 rounded-2xl blur-xl" />
       </div>
     </div>,
-    // AI Analizi - Analytics dashboard mockup
-    <div key="ai" className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="relative w-full max-w-sm">
-        <div className="bg-surface-100 rounded-2xl p-4 shadow-lg border border-surface-200">
-          <div className="flex items-center gap-2 mb-4">
-            <Brain className="w-5 h-5 text-emerald-500" />
-            <span className="text-sm font-medium text-surface-700">AI Değerlendirme</span>
-            <span className="ml-auto px-2 py-0.5 bg-emerald-500/10 text-emerald-600 text-xs font-medium rounded-full">%92</span>
+    // AI Analizi - Minimal analytics
+    <div key="ai" className="relative w-full h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-xs">
+        <div className="bg-surface-100/80 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="flex items-center justify-between mb-6">
+            <div className="h-2.5 w-20 bg-surface-200 rounded-full" />
+            <div className="h-6 w-12 bg-surface-200/60 rounded-full" />
           </div>
-          <div className="space-y-3">
-            {['İletişim', 'Teknik Bilgi', 'Problem Çözme', 'Deneyim'].map((skill, i) => (
-              <div key={skill} className="flex items-center gap-3">
-                <span className="text-xs text-surface-600 w-20">{skill}</span>
-                <div className="flex-1 h-2 bg-surface-200 rounded-full overflow-hidden">
+          <div className="space-y-4">
+            {[75, 88, 65, 92].map((val, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-16 h-2 bg-surface-200/60 rounded-full" />
+                <div className="flex-1 h-2 bg-surface-200/40 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full transition-all duration-500"
-                    style={{ width: `${85 + i * 3}%` }}
+                    className="h-full bg-surface-400 rounded-full"
+                    style={{ width: `${val}%` }}
                   />
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-4 pt-3 border-t border-surface-200 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-amber-500" />
-            <span className="text-xs text-surface-600">STAR metodolojisi ile analiz edildi</span>
+          <div className="mt-6 pt-4 border-t border-surface-200/50">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-surface-200" />
+              <div className="h-2 w-32 bg-surface-200/60 rounded-full" />
+            </div>
           </div>
         </div>
-        <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-emerald-500/10 rounded-2xl blur-xl" />
       </div>
     </div>,
-    // Zaman Atlama - Timeline mockup
-    <div key="time" className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="relative w-full max-w-sm">
-        <div className="bg-surface-100 rounded-2xl p-4 shadow-lg border border-surface-200">
-          <div className="flex items-center gap-2 mb-4">
-            <Clock className="w-5 h-5 text-sky-500" />
-            <span className="text-sm font-medium text-surface-700">Zaman Çizelgesi</span>
+    // Zaman Atlama - Minimal timeline
+    <div key="time" className="relative w-full h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-xs">
+        <div className="bg-surface-100/80 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="h-2.5 w-24 bg-surface-200 rounded-full mb-6" />
+          {/* Timeline */}
+          <div className="relative py-4">
+            <div className="h-0.5 bg-surface-200 rounded-full" />
+            <div className="absolute top-1/2 -translate-y-1/2 left-[15%] w-3 h-3 rounded-full bg-surface-300" />
+            <div className="absolute top-1/2 -translate-y-1/2 left-[40%] w-4 h-4 rounded-full bg-surface-400 border-2 border-surface-0" />
+            <div className="absolute top-1/2 -translate-y-1/2 left-[65%] w-3 h-3 rounded-full bg-surface-300" />
+            <div className="absolute top-1/2 -translate-y-1/2 left-[90%] w-3 h-3 rounded-full bg-surface-300" />
           </div>
-          <div className="relative h-3 bg-surface-200 rounded-full mb-4">
-            <div className="absolute top-0 left-[10%] w-1 h-3 bg-amber-400 rounded-full" />
-            <div className="absolute top-0 left-[35%] w-1 h-3 bg-emerald-400 rounded-full" />
-            <div className="absolute top-0 left-[60%] w-1 h-3 bg-violet-400 rounded-full" />
-            <div className="absolute top-0 left-[85%] w-1 h-3 bg-sky-400 rounded-full" />
-            <div className="absolute -top-1 left-[45%] w-5 h-5 bg-white border-2 border-emerald-500 rounded-full shadow-sm" />
-          </div>
-          <div className="grid grid-cols-4 gap-2">
-            {['0:00', '2:30', '5:00', '7:30'].map((time, i) => (
-              <div key={time} className={cn(
-                "text-center p-2 rounded-lg transition-colors",
-                i === 1 ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-surface-50"
+          {/* Cards */}
+          <div className="grid grid-cols-4 gap-2 mt-4">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className={cn(
+                "p-2 rounded-lg",
+                i === 1 ? "bg-surface-200/80" : "bg-surface-200/40"
               )}>
-                <div className="text-xs font-medium text-surface-700">{time}</div>
-                <div className="text-[10px] text-surface-500 mt-0.5">Soru {i + 1}</div>
+                <div className="h-2 w-6 bg-surface-300/60 rounded-full mx-auto mb-1" />
+                <div className="h-1.5 w-8 bg-surface-300/40 rounded-full mx-auto" />
               </div>
             ))}
           </div>
         </div>
-        <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-sky-500/10 rounded-2xl blur-xl" />
       </div>
     </div>,
   ];
@@ -162,96 +170,90 @@ const FeatureIllustration1 = ({ activeIndex }: { activeIndex: number }) => {
 
 const FeatureIllustration2 = ({ activeIndex }: { activeIndex: number }) => {
   const illustrations = [
-    // KVKK - Security shield mockup
-    <div key="security" className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="relative w-full max-w-sm">
-        <div className="bg-surface-100 rounded-2xl p-4 shadow-lg border border-surface-200">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-              <Shield className="w-8 h-8 text-white" />
+    // KVKK - Minimal security
+    <div key="security" className="relative w-full h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-xs">
+        <div className="bg-surface-100/80 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="flex justify-center mb-6">
+            <div className="w-14 h-14 rounded-2xl bg-surface-200/80 flex items-center justify-center">
+              <Shield className="w-7 h-7 text-surface-500" />
             </div>
           </div>
-          <div className="text-center mb-4">
-            <div className="text-sm font-semibold text-surface-800">Veri Güvenliği</div>
-            <div className="text-xs text-surface-500">End-to-end şifreleme aktif</div>
+          <div className="text-center mb-6">
+            <div className="h-3 w-24 bg-surface-200 rounded-full mx-auto mb-2" />
+            <div className="h-2 w-32 bg-surface-200/60 rounded-full mx-auto" />
           </div>
           <div className="space-y-2">
-            {['256-bit SSL', 'KVKK Uyumlu', 'TR Sunucu'].map((item, i) => (
-              <div key={item} className="flex items-center gap-2 p-2 bg-surface-50 rounded-lg">
-                <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                </div>
-                <span className="text-xs text-surface-700">{item}</span>
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex items-center gap-3 p-3 bg-surface-200/40 rounded-xl">
+                <div className="w-2 h-2 rounded-full bg-surface-400" />
+                <div className="h-2 w-20 bg-surface-300/60 rounded-full" />
               </div>
             ))}
           </div>
         </div>
-        <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-emerald-500/10 rounded-2xl blur-xl" />
       </div>
     </div>,
-    // Hızlı Kurulum - Setup wizard mockup
-    <div key="setup" className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="relative w-full max-w-sm">
-        <div className="bg-surface-100 rounded-2xl p-4 shadow-lg border border-surface-200">
-          <div className="flex items-center gap-2 mb-4">
-            <Zap className="w-5 h-5 text-amber-500" />
-            <span className="text-sm font-medium text-surface-700">Hızlı Kurulum</span>
-            <span className="ml-auto text-xs text-surface-500">2/3</span>
+    // Hızlı Kurulum - Minimal wizard
+    <div key="setup" className="relative w-full h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-xs">
+        <div className="bg-surface-100/80 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="flex items-center justify-between mb-4">
+            <div className="h-2.5 w-20 bg-surface-200 rounded-full" />
+            <div className="h-2 w-8 bg-surface-200/60 rounded-full" />
           </div>
-          <div className="flex gap-1 mb-4">
-            <div className="flex-1 h-1.5 bg-emerald-500 rounded-full" />
-            <div className="flex-1 h-1.5 bg-emerald-500 rounded-full" />
-            <div className="flex-1 h-1.5 bg-surface-200 rounded-full" />
+          {/* Progress */}
+          <div className="flex gap-1.5 mb-6">
+            <div className="flex-1 h-1 bg-surface-400 rounded-full" />
+            <div className="flex-1 h-1 bg-surface-400 rounded-full" />
+            <div className="flex-1 h-1 bg-surface-200 rounded-full" />
           </div>
+          {/* Steps */}
           <div className="space-y-2 mb-4">
-            <div className="p-3 bg-surface-50 rounded-xl border-2 border-emerald-500/30 flex items-center gap-3">
-              <Video className="w-5 h-5 text-emerald-500" />
-              <div className="flex-1">
-                <div className="text-xs font-medium text-surface-800">Video Mülakat</div>
-                <div className="text-[10px] text-surface-500">3 soru eklenmiş</div>
+            <div className="p-3 bg-surface-200/60 rounded-xl flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-surface-300/60 flex items-center justify-center">
+                <Video className="w-4 h-4 text-surface-500" />
+              </div>
+              <div className="flex-1 space-y-1">
+                <div className="h-2 w-16 bg-surface-300/60 rounded-full" />
+                <div className="h-1.5 w-12 bg-surface-300/40 rounded-full" />
               </div>
             </div>
-            <div className="p-3 bg-surface-50 rounded-xl border border-surface-200 flex items-center gap-3 opacity-60">
-              <Users className="w-5 h-5 text-surface-400" />
-              <div className="flex-1">
-                <div className="text-xs font-medium text-surface-600">Aday Davet Et</div>
-              </div>
+            <div className="p-3 bg-surface-200/30 rounded-xl flex items-center gap-3 opacity-50">
+              <div className="w-8 h-8 rounded-lg bg-surface-200" />
+              <div className="h-2 w-14 bg-surface-200/60 rounded-full" />
             </div>
           </div>
-          <button className="w-full py-2 bg-black text-white text-xs font-medium rounded-lg">
-            Devam Et
-          </button>
+          <div className="h-9 bg-surface-300 rounded-lg" />
         </div>
-        <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-amber-500/10 rounded-2xl blur-xl" />
       </div>
     </div>,
-    // Ekip İşbirliği - Team collaboration mockup
-    <div key="team" className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="relative w-full max-w-sm">
-        <div className="bg-surface-100 rounded-2xl p-4 shadow-lg border border-surface-200">
-          <div className="flex items-center gap-2 mb-4">
-            <Users className="w-5 h-5 text-violet-500" />
-            <span className="text-sm font-medium text-surface-700">Ekip Yorumları</span>
-          </div>
+    // Ekip İşbirliği - Minimal collaboration
+    <div key="team" className="relative w-full h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-xs">
+        <div className="bg-surface-100/80 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="h-2.5 w-24 bg-surface-200 rounded-full mb-6" />
           <div className="space-y-3">
-            {[
-              { name: 'AY', color: 'from-violet-400 to-violet-600', text: 'Teknik bilgisi çok iyi 👍', time: '2dk' },
-              { name: 'MK', color: 'from-emerald-400 to-emerald-600', text: 'İletişimi güçlü', time: '5dk' },
-              { name: 'ZD', color: 'from-amber-400 to-amber-600', text: 'Deneyimi uygun görünüyor', time: '8dk' },
-            ].map((comment, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${comment.color} flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-[10px] text-white font-medium">{comment.name}</span>
-                </div>
-                <div className="flex-1 p-2 bg-surface-50 rounded-lg rounded-tl-none">
-                  <p className="text-xs text-surface-700">{comment.text}</p>
-                  <span className="text-[10px] text-surface-400">{comment.time} önce</span>
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className="w-7 h-7 rounded-full bg-surface-300/80 flex-shrink-0" />
+                <div className="flex-1 p-3 bg-surface-200/50 rounded-xl rounded-tl-sm">
+                  <div className="h-2 w-full bg-surface-300/60 rounded-full mb-1.5" />
+                  <div className="h-2 w-2/3 bg-surface-300/40 rounded-full" />
                 </div>
               </div>
             ))}
           </div>
+          {/* Avatars */}
+          <div className="mt-6 pt-4 border-t border-surface-200/50 flex items-center">
+            <div className="flex -space-x-2">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="w-6 h-6 rounded-full bg-surface-300 border-2 border-surface-100" />
+              ))}
+            </div>
+            <div className="ml-3 h-2 w-16 bg-surface-200/60 rounded-full" />
+          </div>
         </div>
-        <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-violet-500/10 rounded-2xl blur-xl" />
       </div>
     </div>,
   ];
@@ -463,49 +465,46 @@ export default function HomePage() {
                     <button
                       key={i}
                       onClick={() => setActiveFeature1(i)}
-                      className={cn(
-                        'w-full text-left p-5 rounded-2xl transition-all duration-300',
-                        activeFeature1 === i 
-                          ? 'bg-surface-50 border border-surface-200 shadow-sm' 
-                          : 'hover:bg-surface-50/50'
-                      )}
+                      className="w-full text-left py-4 transition-all duration-300 border-b border-surface-100 last:border-b-0"
                     >
                       <div className="flex items-center gap-4">
                         <div className={cn(
-                          'w-11 h-11 rounded-xl flex items-center justify-center transition-colors',
-                          activeFeature1 === i ? 'bg-black text-white' : 'bg-surface-100 text-surface-600'
+                          'w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300',
+                          activeFeature1 === i ? 'bg-surface-900 text-white' : 'bg-surface-100 text-surface-500'
                         )}>
                           <f.icon className="w-5 h-5" />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
                             <h3 className={cn(
-                              'text-base font-semibold transition-colors',
-                              activeFeature1 === i ? 'text-surface-900' : 'text-surface-600'
+                              'text-[15px] font-medium transition-colors',
+                              activeFeature1 === i ? 'text-surface-900' : 'text-surface-500'
                             )}>
                               {f.title}
                             </h3>
                             {f.badge && (
                               <span className={cn(
-                                'text-[10px] px-2 py-0.5 rounded-full font-medium border',
-                                f.badge === 'Popüler' && 'bg-amber-500/15 border-amber-500/25 text-amber-700',
-                                f.badge === 'Yeni' && 'bg-emerald-500/15 border-emerald-500/25 text-emerald-700'
+                                'text-[10px] px-2 py-0.5 rounded-full font-medium',
+                                f.badge === 'Popüler' && 'bg-amber-500/10 text-amber-600',
+                                f.badge === 'Yeni' && 'bg-emerald-500/10 text-emerald-600'
                               )}>
                                 {f.badge}
                               </span>
                             )}
                           </div>
                         </div>
-                        <ChevronDown className={cn(
-                          'w-5 h-5 text-surface-400 transition-transform',
-                          activeFeature1 === i && 'rotate-180'
-                        )} />
+                        <div className={cn(
+                          'w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300',
+                          activeFeature1 === i ? 'bg-surface-900 text-white rotate-180' : 'text-surface-400'
+                        )}>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
                       </div>
                       <div className={cn(
-                        'overflow-hidden transition-all duration-300',
+                        'overflow-hidden transition-all duration-300 pl-14',
                         activeFeature1 === i ? 'max-h-24 opacity-100 mt-3' : 'max-h-0 opacity-0'
                       )}>
-                        <p className="text-sm text-surface-600 pl-15 leading-relaxed">{f.desc}</p>
+                        <p className="text-sm text-surface-500 leading-relaxed">{f.desc}</p>
                       </div>
                     </button>
                   ))}
@@ -529,38 +528,35 @@ export default function HomePage() {
                     <button
                       key={i}
                       onClick={() => setActiveFeature2(i)}
-                      className={cn(
-                        'w-full text-left p-5 rounded-2xl transition-all duration-300',
-                        activeFeature2 === i 
-                          ? 'bg-surface-50 border border-surface-200 shadow-sm' 
-                          : 'hover:bg-surface-50/50'
-                      )}
+                      className="w-full text-left py-4 transition-all duration-300 border-b border-surface-100 last:border-b-0"
                     >
                       <div className="flex items-center gap-4">
                         <div className={cn(
-                          'w-11 h-11 rounded-xl flex items-center justify-center transition-colors',
-                          activeFeature2 === i ? 'bg-black text-white' : 'bg-surface-100 text-surface-600'
+                          'w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300',
+                          activeFeature2 === i ? 'bg-surface-900 text-white' : 'bg-surface-100 text-surface-500'
                         )}>
                           <f.icon className="w-5 h-5" />
                         </div>
                         <div className="flex-1">
                           <h3 className={cn(
-                            'text-base font-semibold transition-colors',
-                            activeFeature2 === i ? 'text-surface-900' : 'text-surface-600'
+                            'text-[15px] font-medium transition-colors',
+                            activeFeature2 === i ? 'text-surface-900' : 'text-surface-500'
                           )}>
                             {f.title}
                           </h3>
                         </div>
-                        <ChevronDown className={cn(
-                          'w-5 h-5 text-surface-400 transition-transform',
-                          activeFeature2 === i && 'rotate-180'
-                        )} />
+                        <div className={cn(
+                          'w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300',
+                          activeFeature2 === i ? 'bg-surface-900 text-white rotate-180' : 'text-surface-400'
+                        )}>
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
                       </div>
                       <div className={cn(
-                        'overflow-hidden transition-all duration-300',
+                        'overflow-hidden transition-all duration-300 pl-14',
                         activeFeature2 === i ? 'max-h-24 opacity-100 mt-3' : 'max-h-0 opacity-0'
                       )}>
-                        <p className="text-sm text-surface-600 pl-15 leading-relaxed">{f.desc}</p>
+                        <p className="text-sm text-surface-500 leading-relaxed">{f.desc}</p>
                       </div>
                     </button>
                   ))}

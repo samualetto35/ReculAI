@@ -1,17 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Sun, Moon, Send, MessageSquare, Clock, Sparkles } from 'lucide-react';
+import { Sun, Moon, Send, MessageSquare, Clock, Sparkles } from 'lucide-react';
 import { useTheme } from '../providers';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { MobileNavMenu } from '@/components/MobileNavMenu';
-
-const contactMethods = [
-  { icon: Mail, title: 'E-posta', value: 'info@asyncview.com', desc: '24 saat içinde yanıt' },
-  { icon: Phone, title: 'Telefon', value: '+90 212 123 45 67', desc: 'Pazartesi-Cuma, 09:00-18:00' },
-  { icon: MapPin, title: 'Adres', value: 'İstanbul, Türkiye', desc: 'Maslak, Sarıyer' },
-];
 
 export default function ContactPage() {
   const { theme, toggleTheme } = useTheme();
@@ -85,24 +79,6 @@ export default function ContactPage() {
             <p className="text-base md:text-lg text-surface-600">
               Sorularınız mı var? Size yardımcı olmaktan mutluluk duyarız.
             </p>
-          </div>
-        </section>
-
-        {/* Contact Methods */}
-        <section className="py-8 md:py-12">
-          <div className="max-w-5xl mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-3 md:grid-cols-3 gap-3 md:gap-6">
-              {contactMethods.map((method, i) => (
-                <div key={i} className="bg-surface-50 border border-surface-200 rounded-xl p-3 md:p-6 text-center hover:border-surface-300 transition-colors">
-                  <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-4 bg-zinc-100">
-                    <method.icon className="w-4 h-4 md:w-6 md:h-6 text-zinc-700" />
-                  </div>
-                  <h3 className="text-xs md:text-lg font-semibold text-surface-900 mb-1">{method.title}</h3>
-                  <p className="text-[11px] md:text-base text-surface-900 font-medium leading-snug">{method.value}</p>
-                  <p className="hidden md:block text-xs md:text-sm text-surface-500">{method.desc}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
