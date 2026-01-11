@@ -22,17 +22,16 @@ export function useTheme() {
 }
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('dark');
+  const [theme, setThemeState] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage for saved theme
+    // Check localStorage for saved theme, default to light
     const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setThemeState(savedTheme);
-      document.documentElement.classList.toggle('light', savedTheme === 'light');
-    }
+    const initialTheme = savedTheme || 'light';
+    setThemeState(initialTheme);
+    document.documentElement.classList.toggle('light', initialTheme === 'light');
   }, []);
 
   const setTheme = (newTheme: Theme) => {
